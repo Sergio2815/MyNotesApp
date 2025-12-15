@@ -8,13 +8,76 @@
 </head>
 <body>
   <div class="container">
-    <h1>📝 My Notes</h1>
-    <div class="note-input">
-      <textarea id="note-text" placeholder="Type your note..."></textarea>
-      <button id="add-btn">Add Note</button>
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1>📝 My Notes</h1>
+      </div>
+      <div class="topbar-center">
+        <input id="search" placeholder="Search notes...">
+      </div>
+      <div class="topbar-right">
+        <button id="new-note-btn">+ New</button>
+        <button id="export-btn">Export</button>
+      </div>
+    </header>
+
+    <div class="app-grid">
+      <aside class="sidebar">
+        
+        <ul id="notes-list"></ul>
+      </aside>
+
+      <main class="editor">
+        <input id="note-title" placeholder="Untitled" />
+
+        <div class="toolbar">
+          <button data-cmd="bold">B</button>
+          <button data-cmd="italic">I</button>
+          <select id="font-select">
+            <option value="Poppins">Poppins</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Arial">Arial</option>
+            <option value="Courier New">Courier New</option>
+          </select>
+          <select id="size-select">
+            <option value="14px">14</option>
+            <option value="16px" selected>16</option>
+            <option value="18px">18</option>
+            <option value="20px">20</option>
+            <option value="24px">24</option>
+          </select>
+          <button id="add-image-btn">Image</button>
+          <button id="draw-btn">Scribble</button>
+          <button id="delete-note-btn" style="margin-left:auto;background:crimson">Delete</button>
+        </div>
+
+        <div id="editor" contenteditable="true" class="content"></div>
+
+        <div class="subnotes">
+          <h3>Sub-notes</h3>
+          <div class="subnote-input">
+            <input id="subnote-text" placeholder="Add sub-note...">
+            <button id="add-subnote-btn">Add</button>
+          </div>
+          <ul id="subnotes-list"></ul>
+        </div>
+      </main>
     </div>
-    <div id="notes-container"></div>
-  </div>
-  <script src="script.js"></script>
+
+    <input type="file" id="image-input" accept="image/*" style="display:none" />
+
+    <!-- Drawing modal -->
+    <div id="draw-modal" class="modal" style="display:none">
+      <div class="modal-content">
+        <canvas id="draw-canvas"></canvas>
+        <div class="draw-controls">
+          <button id="clear-canvas">Clear</button>
+          <button id="save-canvas">Save</button>
+          <button id="close-canvas">Close</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="index.js"></script>
 </body>
 </html>

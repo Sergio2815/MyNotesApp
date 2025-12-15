@@ -18,20 +18,28 @@ body {
 }
 
 .container {
-  width: 80%;
-  max-width: 700px;
-  padding: 20px;
-  background: rgba(255,255,255,0.05);
-  backdrop-filter: blur(10px);
-  border-radius: 20px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  width: 96%;
+  max-width: 1100px;
+  padding: 18px;
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+  box-shadow: 0 6px 30px rgba(0,0,0,0.35);
 }
 
 h1 {
-  text-align: center;
-  margin-bottom: 20px;
   font-weight: 700;
+  color: white;
+  margin: 0;
 }
+
+.topbar { display:flex; gap:12px; align-items:center; margin-bottom:14px }
+.topbar-left { flex: 0 0 auto }
+.topbar-center { flex: 1 1 auto; display:flex; justify-content:center }
+.topbar-right { flex: 0 0 auto; display:flex; gap:8px }
+
+.topbar input { width: 100%; max-width: 560px; padding:8px 12px; border-radius:8px; border:none; background: rgba(255,255,255,0.04); color: white }
+.topbar button { padding:8px 12px; border-radius:8px; border:none; cursor:pointer; background: rgba(255,255,255,0.04); color:white }
 
 .note-input {
   display: flex;
@@ -90,6 +98,99 @@ button:hover {
 
 .note:hover {
   transform: translateY(-5px);
+}
+
+/* New layout */
+.app-grid {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 20px;
+}
+
+.sidebar { 
+  background: rgba(255,255,255,0.02);
+  padding: 12px;
+  border-radius: 10px;
+  max-height: 72vh;
+  overflow: auto;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+}
+
+.sidebar-header {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+#new-note-btn {
+  flex: 0 0 auto;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: none;
+  background: linear-gradient(135deg, #ff9966, #ff5e62);
+  color: white;
+  cursor: pointer;
+}
+
+#search {
+  flex: 1 1 auto;
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  outline: none;
+  background: rgba(255,255,255,0.05);
+  color: white;
+}
+
+#notes-list { list-style: none; margin: 0; padding: 0 }
+#notes-list li { padding: 12px; border-radius: 8px; margin-bottom: 10px; cursor: pointer; background: transparent; transition: background .15s }
+#notes-list li:hover { background: rgba(255,255,255,0.02) }
+#notes-list li.active { background: rgba(255,255,255,0.04); box-shadow: 0 6px 18px rgba(0,0,0,0.25) }
+#notes-list .meta { font-size:12px; opacity:0.8; margin-top:6px }
+#notes-list .snippet { font-size:13px; opacity:0.9; margin-top:4px }
+
+.editor { background: rgba(0,0,0,0.04); padding: 16px; border-radius: 10px; min-height: 72vh }
+#note-title { width: 100%; padding: 10px 12px; font-size: 20px; border-radius: 8px; border: none; margin-bottom: 12px; background: rgba(255,255,255,0.02); color: white }
+
+.toolbar { display:flex; gap:8px; align-items:center; margin-bottom:12px }
+.toolbar button, .toolbar select { padding:8px 10px; border-radius:8px; border:none; background: rgba(255,255,255,0.02); color:white; cursor:pointer }
+
+/* Make select controls match the dark theme and remove default white appearance */
+.toolbar select {
+  background: rgba(0,0,0,0.35);
+  color: #fff;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding-right: 30px;
+  position: relative;
+}
+.toolbar select:focus { box-shadow: 0 6px 12px rgba(0,0,0,0.18); }
+.toolbar select option { background: #111; color: #fff }
+.toolbar select::-ms-expand { display: none; }
+.toolbar select::after { content: '\25BC'; }
+.toolbar button:hover, .topbar button:hover { transform: translateY(-1px); box-shadow: 0 6px 12px rgba(0,0,0,0.18) }
+
+.toolbar .spacer { margin-left: auto }
+.btn-danger { background: crimson }
+
+.content { min-height: 48vh; padding:14px; border-radius:8px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03)); color: white; overflow:auto }
+.content img { max-width: 100%; height: auto; display: block; margin: 8px 0 }
+
+.subnotes { margin-top: 12px }
+.subnote-input { display:flex; gap:8px }
+.subnote-input input { flex:1; padding:8px; border-radius:8px; border:none; background: rgba(255,255,255,0.04); color: white }
+.subnotes ul { list-style: none; margin-top:8px; padding:0 }
+.subnotes li { padding:8px; border-radius:8px; background: rgba(255,255,255,0.02); margin-bottom:6px }
+
+.modal { position: fixed; inset: 0; display:flex; justify-content:center; align-items:center; background: rgba(0,0,0,0.6) }
+.modal-content { background: #fff; padding: 12px; border-radius: 8px }
+#draw-canvas { background: #fff; border: 1px solid #ddd; display:block; }
+.draw-controls { display:flex; gap:8px; justify-content:flex-end; margin-top:8px }
+
+@media (max-width: 800px) {
+  .app-grid { grid-template-columns: 1fr }
+  .sidebar { order: 2 }
 }
 
 .delete-btn {
